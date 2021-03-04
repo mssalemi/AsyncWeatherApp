@@ -24,7 +24,8 @@ const server = app.listen(port, ()=>{
   console.log(`running on localhost: ${port}`)
 });
 
-const projectData = [];
+let count = 0;
+const projectData = {};
 // GET REQUEST
 app.get("/all", (req, res) => {
   res.send(projectData);
@@ -33,7 +34,8 @@ app.get("/all", (req, res) => {
 // POST method route
 app.post('/add', (req, res) => {
   console.log(`POST REQUEST RECEIVE WITH DATA: \nTemp:${req.body.temp} \nDate: ${req.body.temp} \nUser Input: ${req.body.userInput}`);
-  projectData.push(req.body);
+  projectData[count] = req.body;
+  count++;
   console.log("ALL DATA -");
   console.log(projectData)
 });

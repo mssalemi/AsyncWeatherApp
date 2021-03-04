@@ -87,9 +87,11 @@ const updateUI = async () => {
     // Grabs all the Data from Server projectData variable
     const allData = await request.json();
     document.getElementById("historical-data").innerHTML = "<tr><th>Location</th><th>Temperature</th><th>Date</th><th>How Feeling</th></tr>";
-    for (let i=0; i<allData.length; i++) {
+    let i = 0;
+    for (const data in allData) {
       document.getElementById("historical-data").innerHTML += `<tr><td><strong>${allData[i].loc}</strong></td><td>${allData[i].temp}</td> <td>${allData[i].date}</td><td>${allData[i].userInput}</td></tr>`
-    } 
+      i++;
+    }
   }
   catch (error) {
     console.log("error3", error);
