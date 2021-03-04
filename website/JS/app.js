@@ -2,14 +2,15 @@ console.log("Client Side JS File is Loaded In! (INDEX.HTML)");
 
 document.getElementById("generate").addEventListener("click", () => {
   console.log("Generate Clicked");
-  const cityInput = document.getElementById("city-input");
-  const feelingInput = document.getElementById("feeling-input");
+  const cityInput = document.getElementById("zip");
+  const feelingInput = document.getElementById("feeling");
 
   const data = getWeatherData(cityInput.value);
   data.then((data) => {
     try {
       let d = new Date();
-      let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
+      let newDate = (d.getMonth()+1) + '.' + d.getDay() + '.' + d.getFullYear();
+      console.log(newDate);
       let temp = Math.ceil(data.main.temp);
       let content = feelingInput.value;
       let location = data.name + "," + data.sys.country;
@@ -27,8 +28,8 @@ document.getElementById("generate").addEventListener("click", () => {
 
 // Clear Form Fuction 
 const clearInputs = () => {
-  document.getElementById("city-input").value = "";
-  document.getElementById("feeling-input").value = "";
+  document.getElementById("zip").value = "";
+  document.getElementById("feeling").value = "";
 }
 
 // Grab Weather Data from API 
